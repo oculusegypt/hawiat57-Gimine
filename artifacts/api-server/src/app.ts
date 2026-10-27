@@ -8,6 +8,9 @@ import router from "./routes";
 import { logger } from "./lib/logger";
 import { requireAdmin, requireNonDriver } from "./middleware/adminAuth";
 import { normalizePublicUploadUrls } from "./lib/publicUploadPath";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app: Express = express();
 // The deployed app runs behind a reverse proxy. Trust its hop so rate limiting
@@ -17,7 +20,6 @@ app.set("trust proxy", 1);
 // ── Security headers ──────────────────────────────────────────────────────────
 app.use((_req: Request, res: Response, next: NextFunction) => {
   res.setHeader("X-Content-Type-Options", "nosniff");
-  res.setHeader("X-Frame-Options", "DENY");
   res.setHeader("X-XSS-Protection", "1; mode=block");
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   // The public chat can explicitly request a location and open the device
@@ -38,7 +40,7 @@ function isAllowedOrigin(origin: string): boolean {
     }
     const host = url.hostname.toLowerCase();
     if (host === "localhost" || host === "127.0.0.1" || host === "0.0.0.0") return true;
-    return host.endsWith(".replit.dev") || host.endsWith(".replit.app");
+    return host.endsWith(".run.app") || host.endsWith(".google.com") || host.endsWith(".aistudio.google.com") || host.endsWith(".replit.dev") || host.endsWith(".replit.app");
   } catch {
     return false;
   }

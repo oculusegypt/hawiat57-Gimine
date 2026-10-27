@@ -1,0 +1,10 @@
+{
+  "name": "CleanFlow - إدارة وتأجير الحاويات بالرياض",
+  "description": "منصة وموقع خدمات تأجير الحاويات ونقل الأنقاض ومخلفات البناء بالرياض مع لوحة تحكم وإدارة العمليات والطلبات.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

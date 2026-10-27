@@ -1,1 +1,0 @@
-const r="https://sabaik.net";function s(){return r}function e(t="/"){const n=t.startsWith("/")?t:`/${t}`;return`${s()}${n}`}function a(t){if(!t)return"/";try{const n=new URL(t);return`${n.pathname}${n.search}${n.hash}`||"/"}catch{}return t}export{r as P,a,s as g,e as s};
